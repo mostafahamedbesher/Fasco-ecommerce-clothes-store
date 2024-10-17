@@ -186,7 +186,7 @@
   }
 
   .mobile-overlay-list {
-    @apply max-sm-l:w-[75%] max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:z-[1100] max-lg:h-[100vh] max-lg:w-[40%] max-lg:bg-primary max-lg:pl-6 max-lg:pt-6 max-md:w-[50%] max-sm:w-[60%];
+    @apply max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:z-[1100] max-lg:h-[100dvh] max-lg:w-[40%] max-lg:bg-primary max-lg:pl-6 max-lg:pt-6 max-md:w-[50%] max-sm:w-[60%] max-sm-l:w-[75%];
   }
 }
 

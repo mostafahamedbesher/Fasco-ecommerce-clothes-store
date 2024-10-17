@@ -27,7 +27,7 @@ function UserNavigationList() {
 
   return (
     <ul
-      className={`mobile-overlay-list flex h-[70vh] list-none flex-col gap-4 border-b-2 max-xl:border-none max-lg:h-[100vh] ${isOpenMenu ? "max-lg:menu-slideIn max-lg:flex" : "max-lg:pointer-events-none max-lg:invisible max-lg:translate-x-[-100%] max-lg:opacity-0 max-lg:transition-all max-lg:duration-500"}`}
+      className={`mobile-overlay-list flex h-[70dvh] list-none flex-col gap-4 border-b-2 max-xl:border-none max-lg:h-[100dvh] ${isOpenMenu ? "max-lg:menu-slideIn max-lg:flex" : "max-lg:pointer-events-none max-lg:invisible max-lg:translate-x-[-100%] max-lg:opacity-0 max-lg:transition-all max-lg:duration-500"}`}
     >
       {/* will appear on mobile devices only */}
       <div className="hidden items-center justify-between max-lg:mb-4 max-lg:flex">
