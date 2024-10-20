@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Men's Clothes Store
 
-## Getting Started
+The Men's Clothes Store is a comprehensive eCommerce platform built with Next.js and Supabase, designed specifically for men's clothing. It includes a wide array of features such as user authentication via NextAuth (with Google and GitHub providers), Stripe payment integration, form validation using the Zod library, and advanced functionalities like product filters, pagination, and product variations based on size and color. Users can also create wishlists and manage their own accounts, which includes the ability to view and cancel orders, as well as track items related to each order. State management is efficiently handled using the `useReducer` hook and Context API for global state management, ensuring a smooth and scalable application.
 
-First, run the development server:
+## About
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Men's Clothes Store is built with modern web technologies and provides users with a seamless shopping experience. It allows users to sign up, log in, browse products, make purchases based on size and color, and manage their orders all in one place. The platform ensures secure payments, efficient data handling, and a user-friendly interface.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js** – for a fast, server-rendered, and scalable frontend
+- **Supabase** – as a backend to manage database and authentication
+- **NextAuth.js** – for authentication with Google and GitHub providers
+- **Stripe** – for secure and seamless payment processing
+- **Zod** – for schema-based form validation
+- **React Hook Form** – for managing and validating forms
+- **Tailwind CSS** – for responsive and utility-first CSS styling
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- **User Authentication**:  
+  Users can sign up and log in using their Google or GitHub accounts through NextAuth.js.
+  
+- **Stripe Payment Integration**:  
+  Secure payment handling with Stripe for credit and debit card transactions.
+  
+- **Form Validation**:  
+  Robust form validation with Zod, ensuring correct and safe data input for various forms.
+  
+- **Product Variations**:  
+  Users can select and purchase products based on size and color, providing a real-world shopping experience.
+  
+- **Filters and Pagination**:  
+  Easily browse products using filters for categories, with pagination for smooth browsing.
+  
+- **Wishlist**:  
+  Users can add products to a wishlist for future reference or purchase.
+  
+- **User Account Management**:  
+  Each user has their own account page where they can view and manage their orders, cancel orders, and view items related to those orders.
+  
+- **Global State Management**:  
+  The platform uses the `useReducer` hook and Context API to manage global states efficiently across the application.
+  
+- **Responsive Design**:  
+  Built with Tailwind CSS, the website is fully responsive and optimized for various devices and screen sizes.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ## Demo
+  https://fasco-ecommerce-clothes-store.vercel.app/
