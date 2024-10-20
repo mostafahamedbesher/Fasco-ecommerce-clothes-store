@@ -72,6 +72,7 @@ function FormProductDetails({
     // console.log(data);
     const { size, color, quantity } = data;
 
+    // add data to cart state in reducer
     dispatch({
       type: "cart/addItem",
       payload: {

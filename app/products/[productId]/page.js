@@ -6,7 +6,6 @@ import { getProduct, getAllProductVariants } from "@/app/lib/data-service";
 export const revalidate = 0;
 
 async function page({ params, searchParams }) {
-  console.log("searchParams", searchParams);
   //get main product data
   const product = await getProduct(params.productId);
 
@@ -25,10 +24,6 @@ async function page({ params, searchParams }) {
   const sizes = allProductVariants
     .filter((item) => item.color === ProductvariantColor)
     .map((item) => item.size);
-
-  // const sizes = allProductVariants
-  //   .map((item) => item.size)
-  //   .filter((value, index, newArr) => newArr.indexOf(value) === index);
 
   /////sort sizes from smallest size("sm") to largest ("2xl")/////
 
@@ -54,10 +49,6 @@ async function page({ params, searchParams }) {
       ProductvariantSize = searchParams.sizeVariant;
     }
   }
-
-  // //read size and color variants selected from the url
-  // const ProductvariantSize = searchParams?.sizeVariant ?? sortedSizes.at(0);
-  // const ProductvariantColor = searchParams?.colorVariant ?? colors.at(0);
 
   //get matched(size&color) product variant
   const [matchedProduct] = allProductVariants.filter(

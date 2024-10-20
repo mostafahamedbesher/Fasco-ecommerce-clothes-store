@@ -1,6 +1,14 @@
 "use client";
 
-import { act, createContext, useContext, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+} from "react";
+
+const localStorageKey = "fasco-cart";
 
 const intialState = {
   cart: [],
@@ -46,6 +54,8 @@ function reducer(state, action) {
           return item;
         }),
       };
+    case "cart/getDataFromLocalStr":
+      return { ...state, cart: action.payload };
     default:
       return intialState;
   }
@@ -56,6 +66,27 @@ const cartContext = createContext();
 
 function CartProvider({ children }) {
   const [{ cart }, dispatch] = useReducer(reducer, intialState);
+  const isMounted = useRef(true);
+
+  // handle local storage
+  useEffect(
+    function () {
+      // run only on mount
+      if (isMounted.current) {
+        // get cart data from local storage
+        const cartData = JSON.parse(localStorage.getItem(localStorageKey));
+        if (cartData) {
+          dispatch({ type: "cart/getDataFromLocalStr", payload: cartData });
+        }
+        // change flag value
+        isMounted.current = false;
+      } else {
+        //update local storage when cart changes
+        localStorage.setItem(localStorageKey, JSON.stringify(cart));
+      }
+    },
+    [JSON.stringify(cart)],
+  );
 
   return (
     <cartContext.Provider value={{ cart, dispatch }}>

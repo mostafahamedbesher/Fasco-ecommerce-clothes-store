@@ -15,12 +15,15 @@ function Quantity({
 
   function increaseQuantity() {
     if (compPlace === "cart") {
-      dispatch({
-        type: "cart/increaseItemQuantity",
-        payload: {
-          id: item.id,
-        },
-      });
+      if (item.quantity < maxQuantity) {
+        dispatch({
+          type: "cart/increaseItemQuantity",
+          payload: {
+            id: item.id,
+          },
+        });
+      }
+
       return;
     }
 
