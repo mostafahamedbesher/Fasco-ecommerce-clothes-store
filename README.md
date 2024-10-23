@@ -47,3 +47,8 @@ The Men's Clothes Store is built with modern web technologies and provides users
 
   ## Demo
   https://fasco-ecommerce-clothes-store.vercel.app/
+
+  ## Video
+
+https://github.com/user-attachments/assets/e75ee5f1-ec42-43d4-9b5e-01b571f7017f
+
