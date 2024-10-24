@@ -13,7 +13,7 @@ The Men's Clothes Store is built with modern web technologies and provides users
 - **NextAuth.js** – for authentication with Google and GitHub providers
 - **Stripe** – for secure and seamless payment processing
 - **Zod** – for schema-based form validation
-- **React Hook Form** – for managing and validating forms
+- **React Hook Form** – for managing and registering form inputs
 - **Tailwind CSS** – for responsive and utility-first CSS styling
 
 ## Features
