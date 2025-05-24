@@ -1,5 +1,6 @@
 "use client";
 
+import { getUniqueItems } from "@/utils/utils";
 import { useMobileMenu } from "../contexts/mobileMenuContext";
 import ButtonCloseMenu from "./ButtonCloseMenu";
 import ButtonCollectionFilter from "./ButtonCollectionFilter";
@@ -11,10 +12,16 @@ import Size from "./Size";
 
 function Filters({ allProductsColors, productsData }) {
   const { isOpenMenu, setIsOpenMenu } = useMobileMenu();
+
   //get all available colors(unique only)
-  const colorsData = allProductsColors
-    .map((item) => item.color)
-    .filter((value, index, newArr) => newArr.indexOf(value) === index);
+  const colorsData = getUniqueItems(
+    allProductsColors.map((item) => item.color),
+  );
+
+  // unique only
+  const categoriesData = getUniqueItems(
+    productsData.map((item) => item.category),
+  );
 
   const sizesData = ["sm", "m", "l", "xl", "2xl"];
 
@@ -27,10 +34,6 @@ function Filters({ allProductsColors, productsData }) {
 
       return acc;
     });
-
-  const categoriesData = productsData
-    .map((item) => item.category)
-    .filter((value, index, newArr) => newArr.indexOf(value) === index);
 
   return (
     <aside
@@ -64,8 +67,8 @@ function Filters({ allProductsColors, productsData }) {
       <Filter
         heading="Colors"
         data={colorsData}
-        render={(color, i) => (
-          <li key={i}>
+        render={(color) => (
+          <li key={color}>
             <Color color={color} type="large" height="2.3rem" width="2.3rem">
               {color}
             </Color>
@@ -87,8 +90,8 @@ function Filters({ allProductsColors, productsData }) {
         heading="Categories"
         direction="vertical"
         data={categoriesData}
-        render={(category, i) => (
-          <li key={i}>
+        render={(category) => (
+          <li key={category}>
             <ButtonCollectionFilter category={category}>
               {category}
             </ButtonCollectionFilter>

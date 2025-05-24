@@ -6,6 +6,7 @@ import ProductsBox from "./ProductsBox";
 import ProductNotFound from "./ProductNotFound";
 import ProductsList from "./ProductsList";
 import ButtonPagination from "./ButtonPagination";
+import { filteredProducts, getUniqueItems } from "@/utils/utils";
 
 function Products({
   filterSize,
@@ -13,23 +14,39 @@ function Products({
   filterCategory,
   filterPrice,
   productsData,
+  allVariants,
   count,
   range,
 }) {
   let displayedProducts = productsData;
+
   //size filter
   if (filterSize === "all") {
     displayedProducts = productsData;
   } else {
-    displayedProducts = productsData.filter((product) =>
-      product.sizes.includes(filterSize),
+    // displayedProducts = productsData.filter((product) =>
+    //   product.sizes?.includes(filterSize),
+    // );
+
+    displayedProducts = filteredProducts(
+      productsData,
+      allVariants,
+      filterSize,
+      "size",
     );
   }
 
   //color filter
   if (filterColor !== "all") {
-    displayedProducts = displayedProducts.filter((product) =>
-      product.colors.includes(filterColor),
+    // displayedProducts = displayedProducts.filter((product) =>
+    //   product.colors?.includes(filterColor),
+    // );
+
+    displayedProducts = filteredProducts(
+      displayedProducts,
+      allVariants,
+      filterColor,
+      "color",
     );
   }
 

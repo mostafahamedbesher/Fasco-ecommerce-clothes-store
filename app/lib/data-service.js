@@ -176,6 +176,16 @@ export async function getItemsWishlistbyUserId(userId) {
   return data;
 }
 
+export async function getAllVariants() {
+  const { data, error } = await supabase.from("productVariants").select("*");
+
+  if (error) {
+    throw new Error("all variants couldnot be loaded!!");
+  }
+
+  return data;
+}
+
 /////////////
 // CREATE
 export async function createOrder(orderData) {

@@ -1,6 +1,10 @@
 import Filters from "../components/Filters";
 import Products from "../components/Products";
-import { getAllColors, getAllProducts } from "../lib/data-service";
+import {
+  getAllColors,
+  getAllProducts,
+  getAllVariants,
+} from "../lib/data-service";
 import { GridViewProvider } from "../contexts/gridViewContext";
 // import ProductsList from "../components/ProductsList";
 import { MobileMenuProvider } from "../contexts/mobileMenuContext";
@@ -12,7 +16,8 @@ export const revalidate = 0;
 
 async function page({ searchParams }) {
   const { data: productsData, count } = await getAllProducts();
-  // console.log(productsData);
+  const allVariants = await getAllVariants();
+
   const range = searchParams?.range ?? 6;
 
   const allProductsColors = await getAllColors();
@@ -49,6 +54,7 @@ async function page({ searchParams }) {
           filterCategory={filterCategory}
           filterPrice={filterPrice}
           productsData={productsData}
+          allVariants={allVariants}
           count={count}
           range={range}
         />

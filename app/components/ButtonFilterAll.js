@@ -31,7 +31,7 @@ function ButtonFilterAll({ filterType }) {
 
   return (
     <button
-      className="border-b-2 border-black text-base uppercase text-black"
+      className="rounded-sm border-b-2 border-black text-base uppercase text-black"
       onClick={handleClick}
     >
       all

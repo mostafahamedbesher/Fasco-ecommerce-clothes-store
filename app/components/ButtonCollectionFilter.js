@@ -10,7 +10,7 @@ function ButtonCollectionFilter({ children, category }) {
 
   return (
     <button
-      className={`rounded-sm px-2 text-lg uppercase ${categoryParam === category ? "bg-secondary-gray-0 text-primary" : "text-secondary-gray-0"}`}
+      className={`rounded-sm px-2 text-lg uppercase transition-colors duration-150 hover:bg-secondary-gray-0 hover:text-primary ${categoryParam === category ? "bg-secondary-gray-0 text-primary" : "text-secondary-gray-0"}`}
       onClick={handleSetFilter}
     >
       {children}

@@ -11,7 +11,7 @@ function Size({ children, size }) {
   return (
     <button
       onClick={handleSetFilter}
-      className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-md border-2 border-solid border-secondary-gray-0 text-sm font-semibold uppercase ${sizeParam === size ? "bg-secondary-gray-0 text-primary" : "text-secondary-gray-0"} max-xl:h-10 max-xl:w-10`}
+      className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-md border-2 border-solid border-secondary-gray-0 text-sm font-semibold uppercase transition-all duration-150 hover:bg-secondary-gray-0 hover:text-primary ${sizeParam === size ? "bg-secondary-gray-0 text-primary" : "text-secondary-gray-0"} max-xl:h-10 max-xl:w-10`}
     >
       {children}
     </button>

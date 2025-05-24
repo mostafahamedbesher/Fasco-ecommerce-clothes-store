@@ -1,6 +1,12 @@
 import ButtonFilterAll from "./ButtonFilterAll";
 
-function Filter({ heading, direction = "horizontal", data, render, children }) {
+function Filter({
+  heading,
+  direction = "horizontal",
+  data = [],
+  render,
+  children,
+}) {
   return (
     <div className="mb-12">
       <h3 className="mb-6 text-xl font-medium">{heading}</h3>
@@ -14,7 +20,7 @@ function Filter({ heading, direction = "horizontal", data, render, children }) {
         }`}
       >
         {/* using React render-props pattern */}
-        {heading !== "Prices" ? data.map(render) : children}
+        {data.length > 0 ? data.map(render) : children}
       </ul>
     </div>
   );

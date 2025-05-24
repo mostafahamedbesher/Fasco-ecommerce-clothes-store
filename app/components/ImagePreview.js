@@ -138,7 +138,7 @@ function ImagePreview({ matchedProduct }) {
       </div>
 
       {/* large image old-height --> h-[80dvh]*/}
-      <div className="max-sm-l:h-[38rem] relative h-[38rem] w-full max-xl:h-[34rem] max-md:h-[45rem]">
+      <div className="relative h-[38rem] w-full max-xl:h-[34rem] max-md:h-[45rem] max-sm-l:h-[38rem]">
         <Image
           fill
           quality={100}
