@@ -3,20 +3,21 @@
 import { HiOutlineTruck } from "react-icons/hi2";
 import { PiTShirt } from "react-icons/pi";
 
+import { addDays, format } from "date-fns";
+import namer from "color-namer";
+import toast from "react-hot-toast";
 import React, { useEffect, useState } from "react";
 
 import ButtonAddToCart from "./ButtonAddToCart";
 import { useCart } from "../contexts/cartContext";
 import Quantity from "./Quantity";
 import { useForm } from "react-hook-form";
-import SizeForm from "./SizeForm";
-import ColorForm from "./ColorForm";
 import ButtonSoldout from "./ButtonSoldout";
-
-import namer from "color-namer";
-import { addDays, format } from "date-fns";
 import ButtonAddtoWishlist from "./ButtonAddtoWishlist";
-import toast from "react-hot-toast";
+import ColorFormInput from "./ColorFormInput";
+import SizeFormInput from "./SizeFormInput";
+import useSetFilter from "../hooks/useSetFilter";
+import { useSearchParams } from "next/navigation";
 
 function FormProductDetails({
   product,
@@ -30,12 +31,24 @@ function FormProductDetails({
 }) {
   const { register, handleSubmit, setValue } = useForm();
 
+  const { dispatch } = useCart();
+
   const { title, discount, material } = product;
 
-  // //edit
-  // const sizes = ["sm", "m", "l", "xl", "2xl"];
+  // read selected color to add it to url and also select correct size because not all color variants have the same size variants
+  const searchParams = useSearchParams();
+  const selectedColor = searchParams.get("colorVariant");
 
-  const { dispatch } = useCart();
+  const { handleSetFilter: handleSetSize } = useSetFilter(
+    "sizeVariant",
+    sizesAvailable[0],
+  );
+  const { handleSetFilter: handleSetColor } = useSetFilter(
+    "colorVariant",
+    colors[0],
+  );
+
+  // dates used with estimated Delivery Date
   const today = format(new Date(), "MMMM d");
   const afterThreeDays = format(addDays(today, 3), "MMMM d");
   const afterFiveDays = format(addDays(today, 5), "MMMM d");
@@ -66,6 +79,20 @@ function FormProductDetails({
       session,
       wishlist,
     ],
+  );
+
+  // handle color change to avoid incorrect size param if some sizes are not available on other color variants
+  useEffect(
+    function () {
+      // add first color variant of the matched product to url (on mount)
+      if (!selectedColor) {
+        handleSetColor();
+      } else {
+        // add first size variant of selected color available in the url
+        handleSetSize();
+      }
+    },
+    [selectedColor],
   );
 
   function onSubmit(data) {
@@ -100,7 +127,7 @@ function FormProductDetails({
 
         <fieldset className="flex items-center gap-2">
           {sizesAvailable.map((size, i) => (
-            <SizeForm
+            <SizeFormInput
               key={i}
               i={i}
               size={size}
@@ -118,7 +145,7 @@ function FormProductDetails({
 
         <fieldset className="flex items-center gap-2">
           {colors.map((color, i) => (
-            <ColorForm
+            <ColorFormInput
               key={i}
               i={i}
               color={color}

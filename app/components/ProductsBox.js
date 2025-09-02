@@ -3,19 +3,37 @@
 import { useEffect } from "react";
 import { useGridView } from "../contexts/gridViewContext";
 import useSetFilter from "../hooks/useSetFilter";
+import { useSearchParams } from "next/navigation";
 
-function ProductsBox({ children, displayedProductsLength }) {
+function ProductsBox({ children, displayedProductsLength, itemsPerPage }) {
   const { columnsNo } = useGridView();
 
-  //use this and the (useEffect) to reset the range searchParam
-  const { handleSetFilter } = useSetFilter("range", 6);
+  //use this and the below (useEffect) to reset the range searchParam(needed when filtering products)
+  const { handleSetFilter } = useSetFilter("range", itemsPerPage);
+  const searchParams = useSearchParams();
 
   useEffect(
     function () {
-      handleSetFilter();
+      if (
+        displayedProductsLength < itemsPerPage ||
+        !searchParams.has("range")
+      ) {
+        handleSetFilter();
+      }
     },
     [displayedProductsLength],
   );
+
+  // useEffect(
+  //   function () {
+  //     handleSetFilter();
+  //   },
+  //   [displayedProductsLength],
+  // );
+
+  // the below effect is to make the product available to false if all of his variants products stock Quantaties are zero
+  // (will be made -- this is not the above effect)
+  // useEffect(function(){},[]);
 
   let gridCols = "";
 
@@ -30,7 +48,7 @@ function ProductsBox({ children, displayedProductsLength }) {
   return (
     <div
       // style={{ gridTemplateColumns: `repeat(${columnsNo},1fr)` }}
-      className={`max-sm-l:grid-cols-1 mt-8 grid gap-6 gap-y-10 max-xl:gap-8 max-sm:grid-cols-2 ${gridCols} max-sm:gap-6`}
+      className={`mt-8 grid gap-6 gap-y-10 max-xl:gap-8 max-sm:grid-cols-2 max-sm-l:grid-cols-1 ${gridCols} max-sm:gap-6`}
     >
       {children}
     </div>

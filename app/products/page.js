@@ -3,6 +3,7 @@ import Products from "../components/Products";
 import {
   getAllColors,
   getAllProducts,
+  getAllSettings,
   getAllVariants,
 } from "../lib/data-service";
 import { GridViewProvider } from "../contexts/gridViewContext";
@@ -18,7 +19,11 @@ async function page({ searchParams }) {
   const { data: productsData, count } = await getAllProducts();
   const allVariants = await getAllVariants();
 
-  const range = searchParams?.range ?? 6;
+  // get settings to get number of items per page (pagination number value)
+  const { data } = await getAllSettings();
+  const { itemsPerPage } = data;
+
+  const range = searchParams?.range ?? itemsPerPage;
 
   const allProductsColors = await getAllColors();
   // console.log("allProductsColors", allProductsColors);
@@ -57,6 +62,7 @@ async function page({ searchParams }) {
           allVariants={allVariants}
           count={count}
           range={range}
+          itemsPerPage={itemsPerPage}
         />
       </GridViewProvider>
     </div>

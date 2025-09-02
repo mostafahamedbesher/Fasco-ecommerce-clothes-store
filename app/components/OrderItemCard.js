@@ -1,9 +1,18 @@
 import Image from "next/image";
-import { getProductImages } from "../lib/data-service";
+import { getAllProductImages, getProductVariants } from "../lib/data-service";
 import Color from "./Color";
 
 async function OrderItemCard({ item }) {
-  const [imagesObj] = await getProductImages(item.productId);
+  //// get order item image from variantsImages Table ////
+  // 1- get productId from this orderItem variant (variants table)
+  const [variant] = await getProductVariants(item.productId);
+  const { productId } = variant;
+
+  // 2- use this productId to get this order item image
+  const productImages = await getAllProductImages(productId);
+  const imagesObj = productImages.find(
+    (itemImage) => itemImage.color === item.color,
+  );
   const imagesSrc = imagesObj.images[0];
 
   return (

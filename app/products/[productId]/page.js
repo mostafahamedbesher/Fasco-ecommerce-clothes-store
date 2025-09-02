@@ -1,6 +1,12 @@
 import ImagePreview from "@/app/components/ImagePreview";
 import ProductDetails from "@/app/components/ProductDetails";
-import { getProduct, getAllProductVariants } from "@/app/lib/data-service";
+import {
+  getProduct,
+  getAllProductVariants,
+  getAllProductImages,
+} from "@/app/lib/data-service";
+import { sizesSchema } from "@/utils/constants";
+import { sortByReferenceArray } from "@/utils/utils";
 
 //clear cache
 export const revalidate = 0;
@@ -11,6 +17,9 @@ async function page({ params, searchParams }) {
 
   //fetch all variants of this product
   const allProductVariants = await getAllProductVariants(params.productId);
+
+  // fetch product images from varinatImages table
+  const allMainProductImages = await getAllProductImages(params.productId);
 
   //get current product colors & sizes (unique only ,so no duplicates)
   const colors = allProductVariants
@@ -26,14 +35,7 @@ async function page({ params, searchParams }) {
     .map((item) => item.size);
 
   /////sort sizes from smallest size("sm") to largest ("2xl")/////
-
-  // Define the correct order
-  const order = ["sm", "m", "l", "xl", "2xl"];
-
-  // Use sort with a custom comparator
-  const sortedSizes = sizes
-    .slice()
-    .sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  const sortedSizes = sortByReferenceArray(sizes, sizesSchema);
 
   //read size variants selected from the url
   let ProductvariantSize;
@@ -57,9 +59,14 @@ async function page({ params, searchParams }) {
       variant.color === ProductvariantColor,
   );
 
+  // get current product images according to current selected(matched) color
+  const { images } =
+    allMainProductImages.find((item) => item.color === matchedProduct.color) ||
+    [];
+
   return (
     <div className="grid grid-cols-2 gap-12 max-xl:gap-8 max-lg:gap-6 max-md:grid-cols-1">
-      <ImagePreview matchedProduct={matchedProduct} />
+      <ImagePreview images={images} />
       <ProductDetails
         product={product}
         sizesAvailable={sortedSizes}

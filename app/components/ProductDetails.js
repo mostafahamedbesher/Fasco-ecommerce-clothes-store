@@ -1,5 +1,6 @@
 import { auth } from "../lib/auth";
 import {
+  getAllSettings,
   getItemsWishlistbyUserId,
   getProductColor,
   getProductVariants,
@@ -40,6 +41,10 @@ async function ProductDetails({
   }
   // console.log(wishlist);
 
+  // get settings to get low stock quantity alert value
+  const { data } = await getAllSettings();
+  const { lowStockQuantity } = data;
+
   return (
     <div className="flex flex-col gap-5">
       <div>
@@ -64,7 +69,7 @@ async function ProductDetails({
         )}
       </p>
 
-      {stokeQuantity > 0 && stokeQuantity <= 5 && (
+      {stokeQuantity > 0 && stokeQuantity <= lowStockQuantity && (
         <div className="flex items-center gap-2 rounded-sm bg-primary-2 p-2 max-sm-l:gap-1">
           <HiOutlineFire className="h-8 w-8 text-red-500 max-sm-l:h-7 max-sm-l:w-7" />
           <span className="text-sm text-red-500 max-sm-l:text-xs">

@@ -9,9 +9,7 @@ import { HiOutlineChevronRight } from "react-icons/hi2";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
 import ButtonSliderProduct from "./ButtonSliderProduct";
 
-function ImagePreview({ matchedProduct }) {
-  const { images } = matchedProduct;
-
+function ImagePreview({ images }) {
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const listRef = useRef(null);
@@ -46,7 +44,7 @@ function ImagePreview({ matchedProduct }) {
     });
   };
 
-  //to sync current image previewed when matchedProduct images changes
+  // to sync current image previewed when matchedProduct images changes
   useEffect(
     function () {
       setCurrentImage(images[0]);

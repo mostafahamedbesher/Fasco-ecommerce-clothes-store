@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getProductColor } from "../lib/data-service";
 
 async function Product({ product }) {
-  const { images, title, price, id, discount } = product;
+  const { title, images, price, id, discount } = product;
 
   const productColors = await getProductColor(id);
   // console.log(productColors);
@@ -28,6 +28,7 @@ async function Product({ product }) {
           />
         </div>
       </Link>
+
       <p className="font-semibold max-xl:text-sm">{title}</p>
       {discount ? (
         <div className="flex items-center gap-2">

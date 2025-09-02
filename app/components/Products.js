@@ -7,8 +7,9 @@ import ProductNotFound from "./ProductNotFound";
 import ProductsList from "./ProductsList";
 import ButtonPagination from "./ButtonPagination";
 import { filteredProducts, getUniqueItems } from "@/utils/utils";
+import { getAllSettings } from "../lib/data-service";
 
-function Products({
+async function Products({
   filterSize,
   filterColor,
   filterCategory,
@@ -17,7 +18,12 @@ function Products({
   allVariants,
   count,
   range,
+  itemsPerPage,
 }) {
+  // get settings to get number of items per page (pagination number value)
+  const { data } = await getAllSettings();
+  const { showOutofStockProducts } = data;
+
   let displayedProducts = productsData;
 
   //size filter
@@ -65,6 +71,13 @@ function Products({
     );
   }
 
+  // donot show out of stock products if (showOutofStockProducts) is false
+  if (!showOutofStockProducts) {
+    displayedProducts = displayedProducts.filter(
+      (product) => product.available === true,
+    );
+  }
+
   // console.log("displayedProducts.length = ", displayedProducts.length);
   // console.log("range = ", range);
 
@@ -74,18 +87,23 @@ function Products({
     <section>
       <GridType />
 
-      <ProductsBox displayedProductsLength={displayedProducts.length}>
+      <ProductsBox
+        displayedProductsLength={displayedProducts.length}
+        itemsPerPage={itemsPerPage}
+      >
         <ProductsList displayedProducts={displayedProducts} range={range} />
       </ProductsBox>
 
-      {displayedProducts.length >= 6 && range < displayedProducts.length && (
-        <div className="mt-14 w-full">
-          <ButtonPagination
-            count={count}
-            displayedProductsLength={displayedProducts.length}
-          />
-        </div>
-      )}
+      {displayedProducts.length >= itemsPerPage &&
+        range < displayedProducts.length && (
+          <div className="mt-14 w-full">
+            <ButtonPagination
+              count={count}
+              displayedProductsLength={displayedProducts.length}
+              itemsPerPage={itemsPerPage}
+            />
+          </div>
+        )}
     </section>
   );
 }

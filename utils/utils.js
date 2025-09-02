@@ -13,6 +13,23 @@ export function getUniqueItems(arr) {
   return [...set];
 }
 
+export function sortByReferenceArray(unSortedArr, refArr) {
+  // create a map from refArr for Faster access O(1)
+  const refArrMap = new Map();
+  refArr.forEach((val, idx) => refArrMap.set(val, idx));
+
+  // sort
+  const sortedArr = unSortedArr
+    .slice()
+    .sort(
+      (a, b) =>
+        (refArrMap.get(a) ?? Number.MAX_SAFE_INTEGER) -
+        (refArrMap.get(b) ?? Number.MAX_SAFE_INTEGER),
+    );
+
+  return sortedArr;
+}
+
 export function filteredProducts(
   productsData = [],
   allVariants = [],

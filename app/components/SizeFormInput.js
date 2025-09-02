@@ -2,7 +2,7 @@
 
 import useSetFilter from "../hooks/useSetFilter";
 
-function SizeForm({ i, size, register, ProductvariantSize }) {
+function SizeFormInput({ i, size, register, ProductvariantSize }) {
   const { handleSetFilter } = useSetFilter("sizeVariant", size);
 
   return (
@@ -32,4 +32,4 @@ function SizeForm({ i, size, register, ProductvariantSize }) {
   );
 }
 
-export default SizeForm;
+export default SizeFormInput;

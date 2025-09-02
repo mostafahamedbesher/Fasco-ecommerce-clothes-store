@@ -127,17 +127,34 @@ export async function getOrderItems(orderId) {
   return orderItems;
 }
 
-export async function getProductImages(productId) {
-  const { data: productImages, error } = await supabase
-    .from("productVariants")
-    .select("images")
-    .eq("id", productId);
+// export async function getProductImages(productId) {
+//   const { data: productImages, error } = await supabase
+//     .from("productVariants")
+//     .select("images")
+//     .eq("id", productId);
+
+//   if (error) {
+//     throw new Error("Product image couldnot be loaded!!");
+//   }
+
+//   return productImages;
+// }
+
+export async function getAllProductImages(productId) {
+  if (!productId) return null;
+
+  const { data, error } = await supabase
+    .from("variantsImages")
+    .select("*")
+    .eq("productId", productId);
 
   if (error) {
-    throw new Error("Product image couldnot be loaded!!");
+    throw new Error(
+      "Product Images couldnot be loaded!! Please Check your internet connection",
+    );
   }
 
-  return productImages;
+  return data;
 }
 
 // export async function getWishlistProducts() {
@@ -184,6 +201,18 @@ export async function getAllVariants() {
   }
 
   return data;
+}
+
+export async function getAllSettings() {
+  const { data, error } = await supabase.from("settings").select("*").single();
+
+  if (error) {
+    throw new Error(
+      "Settings couldnot be loaded!! Please Check your internet connection",
+    );
+  }
+
+  return { data, error };
 }
 
 /////////////

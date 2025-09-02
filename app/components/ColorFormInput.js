@@ -2,7 +2,7 @@
 
 import useSetFilter from "../hooks/useSetFilter";
 
-function ColorForm({ i, color, register, ProductvariantColor }) {
+function ColorFormInput({ i, color, register, ProductvariantColor }) {
   const { handleSetFilter } = useSetFilter("colorVariant", color);
 
   return (
@@ -32,4 +32,4 @@ function ColorForm({ i, color, register, ProductvariantColor }) {
   );
 }
 
-export default ColorForm;
+export default ColorFormInput;

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function MostRatedCard({ product }) {
   return (
-    <li className="flex flex-col justify-between gap-4 overflow-hidden rounded-lg bg-primary p-6 shadow-lg">
+    <li className="flex flex-col justify-between gap-4 overflow-hidden rounded-lg bg-primary px-6 py-4 shadow-lg">
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-square">
           <Image

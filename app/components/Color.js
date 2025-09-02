@@ -20,14 +20,12 @@ function Color({ color, type = "mini", width = "1.5rem", height = "1.5rem" }) {
 
   return (
     <div
-      className={`p-[3px] transition-all duration-150 hover:rounded-full hover:ring-2 hover:ring-black ${colorParam === color && type === "large" ? "rounded-full ring-2 ring-black" : ""}`}
+      className={`p-[3px] transition-all duration-150 ${type === "large" ? "hover:rounded-full hover:ring-2 hover:ring-black" : ""} ${colorParam === color && type === "large" ? "rounded-full ring-2 ring-black" : ""}`}
     >
       <div
         onClick={handleClick}
         style={{ backgroundColor: color, height: height, width: width }}
-        className={`h-6 ${
-          type === "large" ? "cursor-pointer" : ""
-        } rounded-full border border-solid border-gray-600`}
+        className={`h-6 ${type === "large" ? "cursor-pointer" : ""} rounded-full border border-solid border-gray-600`}
       ></div>
     </div>
   );
