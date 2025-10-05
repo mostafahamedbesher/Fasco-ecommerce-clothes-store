@@ -53,7 +53,7 @@ function ImagePreview({ images }) {
   );
 
   return (
-    <div className="grid h-fit grid-cols-[1fr_3fr] gap-1 max-lg:grid-cols-1 max-lg:gap-10">
+    <div className="grid h-fit grid-cols-[1fr_3fr] gap-1 max-lg:grid-cols-1 max-lg:gap-10 max-sm:gap-6">
       <div className="flex flex-col items-center gap-8 max-lg:order-2 max-lg:flex-row max-lg:gap-4 max-md:justify-center">
         {/* show slide buttons only when more than 3 images of the product */}
         {images.length > 3 && (
@@ -70,7 +70,7 @@ function ImagePreview({ images }) {
           </ButtonSliderProduct>
         )}
 
-        {/* will appear on monile devices only */}
+        {/* will appear on mobile devices only */}
         {images.length > 3 && (
           <ButtonSliderProduct
             direction="left"
@@ -136,7 +136,7 @@ function ImagePreview({ images }) {
       </div>
 
       {/* large image old-height --> h-[80dvh]*/}
-      <div className="relative h-[38rem] w-full max-xl:h-[34rem] max-md:h-[45rem] max-sm-l:h-[38rem]">
+      <div className="relative h-[38rem] w-full max-xl:h-[34rem] max-md:h-[45rem] max-sm:h-[28rem] max-sm-l:h-[30rem]">
         <Image
           fill
           quality={100}
