@@ -78,9 +78,6 @@ async function Products({
     );
   }
 
-  // console.log("displayedProducts.length = ", displayedProducts.length);
-  // console.log("range = ", range);
-
   if (displayedProducts?.length === 0) return <ProductNotFound />;
 
   return (

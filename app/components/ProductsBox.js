@@ -48,7 +48,7 @@ function ProductsBox({ children, displayedProductsLength, itemsPerPage }) {
   return (
     <div
       // style={{ gridTemplateColumns: `repeat(${columnsNo},1fr)` }}
-      className={`mt-8 grid gap-6 gap-y-10 max-xl:gap-8 max-sm:grid-cols-2 max-sm-l:grid-cols-1 ${gridCols} max-sm:gap-6`}
+      className={`mt-8 grid gap-6 gap-y-10 max-xl:gap-8 max-sm:grid-cols-2 ${gridCols} max-sm:gap-6`}
     >
       {children}
     </div>
