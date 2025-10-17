@@ -55,3 +55,10 @@ export function filteredProducts(
 
   return displayedProducts;
 }
+
+export function getUTCDateFromLocal() {
+  const now = new Date();
+  // Convert local time to UTC ISO string
+  const utcDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return utcDate.toISOString();
+}

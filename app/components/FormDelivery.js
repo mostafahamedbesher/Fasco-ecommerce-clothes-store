@@ -19,6 +19,7 @@ import SpinnerMini from "./SpinnerMini";
 import { useCartTotalPrice } from "../hooks/useCartTotalPrice";
 import toast from "react-hot-toast";
 import InputErrorText from "./InputErrorText";
+import { getUTCDateFromLocal } from "@/utils/utils";
 
 function FormDelivery({ countries, shippingPrice, userId }) {
   const {
@@ -99,7 +100,7 @@ function FormDelivery({ countries, shippingPrice, userId }) {
       shippingPrice: shippingPrice.toFixed(2),
       totalPrice: totalPrice,
       isPaid: true,
-      created_at: new Date().toISOString(),
+      created_at: getUTCDateFromLocal(),
     };
 
     //create order using server action
