@@ -99,6 +99,7 @@ function FormDelivery({ countries, shippingPrice, userId }) {
       shippingPrice: shippingPrice.toFixed(2),
       totalPrice: totalPrice,
       isPaid: true,
+      created_at: new Date().toISOString(),
     };
 
     //create order using server action
@@ -161,8 +162,8 @@ function FormDelivery({ countries, shippingPrice, userId }) {
         )}
       </div>
 
-      <div className="max-sm-l:block max-sm-l:space-y-4 flex items-start gap-4">
-        <div className="max-sm-l:w-full w-[50%]">
+      <div className="flex items-start gap-4 max-sm-l:block max-sm-l:space-y-4">
+        <div className="w-[50%] max-sm-l:w-full">
           <Input
             type="text"
             placeholder="First Name"
@@ -176,7 +177,7 @@ function FormDelivery({ countries, shippingPrice, userId }) {
           )}
         </div>
 
-        <div className="max-sm-l:w-full w-[50%]">
+        <div className="w-[50%] max-sm-l:w-full">
           <Input
             type="text"
             placeholder="Last Name"
@@ -205,8 +206,8 @@ function FormDelivery({ countries, shippingPrice, userId }) {
         )}
       </div>
 
-      <div className="max-sm-l:block max-sm-l:space-y-4 flex items-start gap-4">
-        <div className="max-sm-l:w-full w-[50%]">
+      <div className="flex items-start gap-4 max-sm-l:block max-sm-l:space-y-4">
+        <div className="w-[50%] max-sm-l:w-full">
           <Input
             type="text"
             placeholder="City"
@@ -220,7 +221,7 @@ function FormDelivery({ countries, shippingPrice, userId }) {
           )}
         </div>
 
-        <div className="max-sm-l:w-full w-[50%]">
+        <div className="w-[50%] max-sm-l:w-full">
           <Input
             type="text"
             placeholder="Postal Code"
